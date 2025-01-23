@@ -54,13 +54,24 @@ link :hover{
     font-size: 25px;
     align-items: center;
 }
-
+table{
+    border-radius:20px;
+    background-color:rgb(187, 187, 187);
+}
 .container{
     margin-top: 5%;
 }
-.table{
-    margin-top: 5%
-}
+
+.container {
+        padding: 50px 20px;
+        background-color:rgb(187, 187, 187);
+        margin-top: 7%;
+        justify-content: right;
+        align-items: flex-start;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        border-radius: 20px;  
+    }
 </style>
 <body>
 <nav class="navbar ">
@@ -68,44 +79,55 @@ link :hover{
         <h1>Sistema Registro De Visitas</h1>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="link active" aria-current="page" href="#">Home</a>
+            <a class="link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="link" href="#">Visitantes</a>
+            <a class="link" href="registrar_visita.php">Visitantes</a>
           </li>
           <li class="nav-item">
-            <a class="link" href="#">Painel Administrativo</a>
+            <a class="link" href="area_admin.php">Painel Administrativo</a>
           </li>
           <li class="nav-item">
           
             <a class="botao"><button type="button" class="btn btn-danger">Fale Conosco</button></a>
           </li>
         </ul>
-        </div>
+        
+      </div>
 
-    </nav>
-    <table class="table table-striped-columns">
+      </nav>
+    <div class="container text-center">
+
+
+<table class="table">
+  <thead>
     <tr>
-        <td>Nome</td>
-        <td>Documento</td>
-        <td>Motivo da visita</td>
-        <td>Data/Hora</td>
+
+      <th scope="col">Nome</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Motivo da visita</th>
+      <th scope="col">Data/Hora</th>
     </tr>
-    <?php      
+  </thead>
+  <tbody>
+  <?php      
       $result = $pdo->query("SELECT * FROM visitantes");
       $visitantes = $result->fetchAll(PDO::FETCH_ASSOC);
 
       
-foreach ($visitantes as $row) {
-    echo "<tr>";
-    echo "<td>{$row['nome']}</td>";
-    echo "<td>{$row['documento']}</td>";
-    echo "<td>{$row['motivo']}</td>";
-    echo "<td>{$row['data_hora']}</td>";
-    echo "</tr>";
-}
-?>
+        foreach ($visitantes as $row) {
+            echo "<tr>";
+            echo "<td>{$row['nome']}</td>";
+            echo "<td>{$row['documento']}</td>";
+            echo "<td>{$row['motivo']}</td>";
+            echo "<td>{$row['data_hora']}</td>";
+            echo "</tr>";
+        }
+        ?>
+
+  </tbody>
 </table>
+</div>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
